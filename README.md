@@ -158,15 +158,18 @@ Group 8: custom tags
 
 tagmasks are composed in an an array such as:
 
+```
       [ 2¹|2⁶, 2¹, 2¹, 2²¹|2²⁶, 2¹, 2¹, 2²⁹, 'juegos payasos' ]
+
  content^      ^   ^   ^        ^   ^   ^    ^
          target^   ^   ^        ^   ^   ^    ^
             pricing^   ^        ^   ^   ^    ^
-		       datetime^        ^   ^   ^    ^
-		                  social^   ^   ^    ^
-					        location^   ^    ^
-					             locales^    ^
-						               custom^
+               datetime^        ^   ^   ^    ^
+                          social^   ^   ^    ^
+			    location^   ^    ^
+                                 locales^    ^
+                                       custom^
+```
 
 where this example tagmask array filter results in:
 
