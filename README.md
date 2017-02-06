@@ -166,7 +166,7 @@ tagmasks are composed in an an array such as:
             pricing^   ^        ^   ^   ^    ^
                datetime^        ^   ^   ^    ^
                           social^   ^   ^    ^
-			    location^   ^    ^
+                            location^   ^    ^
                                  locales^    ^
                                        custom^
 ```
