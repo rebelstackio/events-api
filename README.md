@@ -117,17 +117,25 @@ goto local browser: http://api.qchevere.local/?port=5858
 
 # Filter Tags #
 Use filter tags in the search bar to narrow your list to matching events.
+
 **Content Tags** :: art[2¹], book[2²], movie[2³], fundraiser[2⁴], volunteer[2⁵], family[2⁶], festival[2⁷], neighborhood[2⁸], religious[2⁹], shopping[2¹⁰], comedy[2¹¹], music[2¹²], dance[2¹³], nightlife[2¹⁴], theater[2¹⁵], dining[2¹⁶], food-tasting[2¹⁷], conference[2¹⁸], meetup[2¹⁹], class[2²⁰], lecture[2²¹], workshop[2²²], fitness[2²³], sports[2²⁴], other[2²⁵], cinema[2²⁶]
+
 **Target Tags** :: kids[2¹], family[2²], young-adult[2³], young-adult-f[2⁴], young-adult-m[2⁵], adult[2⁶], adult-f[2⁷], adult-m[2⁸], lesbian[2⁹], gay[2¹⁰], xxx[2¹¹]
+
 **Pricing Tags** :: free[2¹], non-free[2²]
+
 **Date/Time Tags** :: monday[2¹] .. sunday[2⁷], january[2⁸] .. december[2¹⁹], morning[2²⁰], afternoon[2²¹], evening[2²²], night[2²³], today[2²⁴], tonight[2²⁵], tomorrow[2²⁶], tomorrow-night[2²⁷]
+
 **Social Tags** :: popular[2¹], im-going[2²], friends-going[2³],  bookmarked[2⁴ [my-bookmarks]
+
 **Location Tags** :: [district name] ie. 'barranco'[2¹] (dependant on Locales tags)
+
 **Locales Tags** ::
 en-US[2¹], en-CA[2²], en-GB[2³], en-AU[2⁴], en-BZ[2⁵], en-IE[2⁶], en-IN[2⁷], en-JM[2⁸], en-MY[2⁹], en-NZ[2¹⁰], en-PH[2¹¹], en-SG[2¹²], en-TT[2¹³], en-ZA[2¹⁴], en-ZW[2¹⁵],
 es-AR[2¹⁶], es-BO[2¹⁷], es-CL[2¹⁸], es-CO[2¹⁹], es-CR[2²⁰], es-DO[2²¹], es-EC[2²²], es-ES[2²³], es-GT[2²⁴], es-HN[23²⁵], es-MX[2²⁶], es-NI[2²⁷], es-PA[2²⁸], es-PE[2²⁹], es-PR[2³⁰], es-PY[2³¹], es-SV[2³²], es-US[2³³], es-UY[2³⁴], es-VE[23³⁵]
 
 **Custom Tags** :: 'slipknot'
+
 **Locales-ext Tags** :: when we need to grow to cover more locales  
 
 ## Auto-completing Tags ##
@@ -150,15 +158,18 @@ Group 8: custom tags
 
 tagmasks are composed in an an array such as:
 
+```
       [ 2¹|2⁶, 2¹, 2¹, 2²¹|2²⁶, 2¹, 2¹, 2²⁹, 'juegos payasos' ]
+
  content^      ^   ^   ^        ^   ^   ^    ^
          target^   ^   ^        ^   ^   ^    ^
             pricing^   ^        ^   ^   ^    ^
-		       datetime^        ^   ^   ^    ^
-		                  social^   ^   ^    ^
-					        location^   ^    ^
-					             locales^    ^
-						               custom^
+               datetime^        ^   ^   ^    ^
+                          social^   ^   ^    ^
+                            location^   ^    ^
+                                 locales^    ^
+                                       custom^
+```
 
 where this example tagmask array filter results in:
 
