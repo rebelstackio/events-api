@@ -1,7 +1,7 @@
 {
-  "name": "quehacemos",
+  "name": "rebelstackio/events-api",
   "version": "0.1.0",
-  "description": "Node server for ",
+  "description": "Events api server ",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
