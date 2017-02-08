@@ -11,15 +11,15 @@ APP_DB_USER=node
 APP_DB_PASS=node8088
 
 # Node version duh
-NODE_VER=5.x
+NODE_VER=6.x
 
 # Edit the following to change the version of PostgreSQL that is installed
-PG_VERSION=9.5
+PG_VERSION=9.6
 
 # Edit the following to change the name of the database that is created (defaults to the user name)
 APP_DB_NAME=$APP_DB_USER
 
-
+LOCAL_HOST=app.qchevere.local
 
 # TODO: change the print usage text
 ###########################################################
@@ -27,9 +27,9 @@ APP_DB_NAME=$APP_DB_USER
 ###########################################################
 print_db_usage () {
   echo "Your NODEJS environment has been setup"
-  echo "  Host: $GUEST_IP  [ local.qhacemos ]"
+  echo "  Host: $GUEST_IP  [ $LOCAL_HOST ]"
   echo "  Guest IP: $GUEST_IP"
-  echo "    added:   \"local.qhacemos   $GUEST_IP\"   to /etc/hosts"
+  echo "    added:   \"$LOCAL_HOST   $GUEST_IP\"   to /etc/hosts"
   echo ""
   echo "  NodeJS v:$NODE_VER"
   echo ""
@@ -151,18 +151,48 @@ EOF
 
 
 
-# db deploy scripts
-echo "deploy base db with sample data"
-# db base deploy version 0.1.0
-cd /home/vagrant/quehacemos/scripts/deploy-dev
-chmod a+x deploy.sh
-mkdir -p log
-./deploy.sh 2> log/deploydb.log
+wget http://download.osgeo.org/postgis/source/postgis-2.3.2.tar.gz
+tar xvfz  postgis-2.3.2.tar.gz
+cd postgis-2.3.2
+
+sudo apt-get -y install libxml2-dev
+sudo apt-get -y install libgeos-dev
+sudo apt-get -y install binutils libproj-dev gdal-bin
+
+./configure
+make
+make install
 
 
+
+cat << EOF | su - postgres -c psql
+
+-- Enable PostGIS (includes raster)
+CREATE EXTENSION postgis;
+-- Enable Topology
+CREATE EXTENSION postgis_topology;
+-- fuzzy matching needed for Tiger
+CREATE EXTENSION fuzzystrmatch;
+-- rule based standardizer
+CREATE EXTENSION address_standardizer;
+-- example rule data set
+CREATE EXTENSION address_standardizer_data_us;
+-- Enable US Tiger Geocoder
+CREATE EXTENSION postgis_tiger_geocoder;
+
+EOF
 
 # Restart PostgreSQL for good measure
 service postgresql restart
+
+
+# db deploy scripts
+echo "deploy base db with sample data"
+# db base deploy version 0.1.0
+#cd /home/vagrant/quehacemos/scripts/deploy-dev
+#chmod a+x deploy.sh
+#mkdir -p log
+#./deploy.sh 2> log/deploydb.log
 
 
 
